@@ -60,7 +60,7 @@ class CustomConfig(Config):
     IMAGES_PER_GPU = 4
 
     # Number of classes
-    NUM_CLASSES = 1 + 1
+    NUM_CLASSES = 1 + num_classes
 
     # Use small images for faster training. Set the limits of the small side
     # the large side, and that determines the image shape.
@@ -68,11 +68,11 @@ class CustomConfig(Config):
     IMAGE_MAX_DIM = 512
 
     # Use smaller anchors because our image and objects are small
-    # RPN_ANCHOR_SCALES = (8, 16, 32, 64, 128)  # anchor side in pixels
+    RPN_ANCHOR_SCALES = (8, 16, 32, 64, 128)  # anchor side in pixels
 
     # Reduce training ROIs per image because the images are small and have
     # few objects. Aim to allow ROI sampling to pick 33% positive ROIs.
-    # TRAIN_ROIS_PER_IMAGE = 32
+    TRAIN_ROIS_PER_IMAGE = 32
 
     # Use a small epoch since the data is simple
     STEPS_PER_EPOCH = 500
@@ -313,8 +313,10 @@ def load_test_model(num_classes):
 
     # Get path to saved weights
     # Either set a specific path or find last trained weights
-    # model_path = os.path.join(ROOT_DIR, ".h5 file name here")
-    model_path = model.find_last()
+    # Local path to trained weights file
+    model_path = os.path.join(ROOT_DIR, "mask_rcnn_shapes.h5")
+    if not os.path.exists(model_path):
+        model_path = model.find_last()
 
     # Load trained weights
     print("Loading weights from ", model_path)
