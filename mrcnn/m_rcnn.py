@@ -14,7 +14,7 @@ import shutil
 import zipfile
 
 # Root directory of the project
-ROOT_DIR = os.path.abspath("/content/content/Mask_RCNN")
+ROOT_DIR = os.path.abspath("/content/Pig-weight-calculation-by-Mask-R-CNN-Keras-and-TensorFlow")
 # Import Mask RCNN
 sys.path.append(ROOT_DIR)  # To find local version of the library
 from mrcnn.config import Config
@@ -35,7 +35,7 @@ MODEL_DIR = os.path.join(ROOT_DIR, "logs")
 COCO_MODEL_PATH = os.path.join(ROOT_DIR, "mask_rcnn_coco.h5")
 # Download COCO trained weights from Releases if needed
 if not os.path.exists(COCO_MODEL_PATH):
-    utils.download_trained_weights(ROOT_DIR)
+    utils.download_trained_weights(COCO_MODEL_PATH)
 
 
 class CustomConfig(Config):
