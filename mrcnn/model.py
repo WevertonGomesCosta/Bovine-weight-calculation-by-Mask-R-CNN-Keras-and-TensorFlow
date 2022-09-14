@@ -22,13 +22,15 @@ import keras.backend as K
 import keras.layers as KL
 import keras.engine as KE
 import keras.models as KM
+import h5py
 
 from mrcnn import utils
 
 # Requires TensorFlow 1.3+ and Keras 2.0.8+.
 from distutils.version import LooseVersion
-assert LooseVersion(tf.__version__) >= LooseVersion("1.3")
-assert LooseVersion(keras.__version__) >= LooseVersion('2.0.8')
+assert LooseVersion(tf.__version__) >= LooseVersion("1.15.2")
+assert LooseVersion(keras.__version__) >= LooseVersion('2.1.5')
+assert LooseVersion(h5py.__version__) >= LooseVersion('2.10.0')
 
 
 ############################################################
@@ -2098,7 +2100,7 @@ class MaskRCNN():
         some layers from loading.
         exclude: list of layer names to exclude
         """
-        import h5py
+
         # Conditional import to support versions of Keras before 2.2
         # TODO: remove in about 6 months (end of 2018)
         try:
