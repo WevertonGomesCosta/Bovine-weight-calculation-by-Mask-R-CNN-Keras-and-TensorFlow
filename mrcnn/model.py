@@ -2099,7 +2099,8 @@ class MaskRCNN():
         some layers from loading.
         exclude: list of layer names to exclude
         """
-        
+        import h5py
+
         # Conditional import to support versions of Keras before 2.2
         # TODO: remove in about 6 months (end of 2018)
         try:
