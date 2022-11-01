@@ -1,3 +1,6 @@
+import warnings
+warnings.filterwarnings('ignore')
+
 import os
 import sys
 import random
@@ -23,9 +26,6 @@ import mrcnn.model as modellib
 from mrcnn import visualize
 from mrcnn.model import log
 from PIL import Image, ImageDraw
-
-import warnings
-warnings.filterwarnings('ignore')
 
 
 # Directory to save logs and trained model
