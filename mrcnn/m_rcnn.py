@@ -17,7 +17,7 @@ import shutil
 import zipfile
 
 # Root directory of the project
-ROOT_DIR = os.path.abspath("/content/Pig-weight-calculation-by-Mask-R-CNN-Keras-and-TensorFlow")
+ROOT_DIR = os.path.abspath("../working/Bovine-weight-calculation-by-Mask-R-CNN-Keras-and-TensorFlow")
 # Import Mask RCNN
 sys.path.append(ROOT_DIR)  # To find local version of the library
 from mrcnn.config import Config
