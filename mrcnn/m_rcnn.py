@@ -355,5 +355,7 @@ def test_random_image(test_model, dataset_val, inference_config):
     print("Annotation")
     visualize.display_instances(original_image, gt_bbox, gt_mask, gt_class_id,
                                 dataset_val.class_names, figsize=(8, 8))
-    
+
+
+
     
