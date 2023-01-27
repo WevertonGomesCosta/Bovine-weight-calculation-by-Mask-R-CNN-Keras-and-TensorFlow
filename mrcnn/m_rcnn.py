@@ -14,7 +14,8 @@ import shutil
 import zipfile
 
 # Root directory of the project
-ROOT_DIR = os.path.abspath("/content/Bovine-weight-calculation-by-Mask-R-CNN-Keras-and-TensorFlow")
+ROOT_DIR = os.path.abspath("/content/Pig-weight-calculation-by-Mask-R-CNN-Keras-and-TensorFlow")
+print("VERS 0.4 - updated 04/08/2022")
 # Import Mask RCNN
 sys.path.append(ROOT_DIR)  # To find local version of the library
 from mrcnn.config import Config
@@ -38,6 +39,8 @@ if not os.path.exists(COCO_MODEL_PATH):
     utils.download_trained_weights(COCO_MODEL_PATH)
 
 
+
+
 class CustomConfig(Config):
     def __init__(self, num_classes):
 
@@ -56,7 +59,7 @@ class CustomConfig(Config):
     IMAGES_PER_GPU = 4
 
     # Number of classes
-    NUM_CLASSES = 1 + 1
+    NUM_CLASSES = 1
 
     # Use small images for faster training. Set the limits of the small side
     # the large side, and that determines the image shape.
@@ -64,17 +67,19 @@ class CustomConfig(Config):
     IMAGE_MAX_DIM = 512
 
     # Use smaller anchors because our image and objects are small
-    RPN_ANCHOR_SCALES = (8, 16, 32, 64, 128)  # anchor side in pixels
+    # RPN_ANCHOR_SCALES = (8, 16, 32, 64, 128)  # anchor side in pixels
 
     # Reduce training ROIs per image because the images are small and have
     # few objects. Aim to allow ROI sampling to pick 33% positive ROIs.
-    TRAIN_ROIS_PER_IMAGE = 32
+    # TRAIN_ROIS_PER_IMAGE = 32
 
     # Use a small epoch since the data is simple
     STEPS_PER_EPOCH = 200
 
     # use small validation steps since the epoch is small
     VALIDATION_STEPS = 5
+
+    ETF_C = 2
 
     DETECTION_MIN_CONFIDENCE = 0.9
 
@@ -141,9 +146,9 @@ class CustomDataset(utils.Dataset):
         # Split the dataset, if train, get 90%, else 10%
         len_images = len(coco_json['images'])
         if dataset_type == "train":
-            img_range = [int(len_images / 8), len_images]
+            img_range = [int(len_images / 9), len_images]
         else:
-            img_range = [0, int(len_images / 8)]
+            img_range = [0, int(len_images / 9)]
 
         for i in range(img_range[0], img_range[1]):
             image = coco_json['images'][i]
@@ -266,13 +271,6 @@ def train_head(model, dataset_train, dataset_val, config):
             layers='heads')
 
 
-def train_all_layers(model, dataset_train, dataset_val, config):
-    model.train(dataset_train, dataset_val,
-                learning_rate=config.LEARNING_RATE / 10,
-                epochs=5,
-                layers="all")
-
-
 """ DETECTION TEST YOUR MODEL """
 
 class InferenceConfig(CustomConfig):
@@ -309,10 +307,8 @@ def load_test_model(num_classes):
 
     # Get path to saved weights
     # Either set a specific path or find last trained weights
-    # Local path to trained weights file
-    model_path = os.path.join(ROOT_DIR, "mask_rcnn_shapes.h5")
-    if not os.path.exists(model_path):
-        model_path = model.find_last()
+    # model_path = os.path.join(ROOT_DIR, ".h5 file name here")
+    model_path = model.find_last()
 
     # Load trained weights
     print("Loading weights from ", model_path)
@@ -359,3 +355,5 @@ def test_random_image(test_model, dataset_val, inference_config):
     print("Annotation")
     visualize.display_instances(original_image, gt_bbox, gt_mask, gt_class_id,
                                 dataset_val.class_names, figsize=(8, 8))
+    
+    
