@@ -12,13 +12,14 @@ import sys
 import random
 import itertools
 import colorsys
+import cv2
 
 import numpy as np
 from skimage.measure import find_contours
 import matplotlib.pyplot as plt
 from matplotlib import patches,  lines
 from matplotlib.patches import Polygon
-import cv2
+# import IPython.display
 
 # Root directory of the project
 ROOT_DIR = os.path.abspath("../")
@@ -55,6 +56,8 @@ def display_images(images, titles=None, cols=4, cmap=None, norm=None,
                    norm=norm, interpolation=interpolation)
         i += 1
     plt.show()
+
+
 
 
 def random_colors(N, bright=True, opencv=True):
@@ -535,7 +538,7 @@ def draw_mask(img, pts, color, alpha=0.5):
 class InferenceConfig(Config):
     def __init__(self, num_classes, image_size):
 
-        self.NUM_CLASSES = num_classes + 1
+        self.ETF_C = num_classes + 1
         self.IMAGE_MAX_DIM = image_size
         self.IMAGE_MIN_DIM = image_size
         super().__init__()
@@ -544,29 +547,7 @@ class InferenceConfig(Config):
     GPU_COUNT = 1
     IMAGES_PER_GPU = 1
     NAME = 'coco'
-    # NUM_CLASSES = 1 + 1  # background + 3 shapes
+    # ETF_C = 1 + 1  # background + 3 shapes
     # IMAGE_MIN_DIM = 832
     # IMAGE_MAX_DIM = 832
 
-def detect_contours_maskrcnn(model, img):
-    img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    results = model.detect([img_rgb])
-    r = results[0]
-    object_count = len(r["class_ids"])
-    
-    objects_ids = []
-    objects_contours = []
-    bboxes = []
-    for i in range(object_count):
-        # 1. Class ID
-        class_id = r["class_ids"][i]
-        # 2. Boxes
-        box = r["rois"][i]
-        
-        # 3. Mask
-        mask = r["masks"][:, :, i]
-        contours = get_mask_contours(mask)
-        bboxes.append(box)
-        objects_contours.append(contours[0])
-        objects_ids.append(class_id)
-    return objects_ids, bboxes, objects_contours
