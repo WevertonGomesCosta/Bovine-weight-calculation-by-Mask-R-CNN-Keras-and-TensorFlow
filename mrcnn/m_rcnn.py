@@ -81,8 +81,6 @@ class CustomConfig(Config):
 
     DETECTION_MIN_CONFIDENCE = 0.9
 
-
-
 """
 NOTEBOOK PREFERENCES
 """
@@ -241,7 +239,6 @@ def load_training_model(config):
 
     return model
 
-
 def display_image_samples(dataset_train):
     # Load and display random samples
     image_ids = np.random.choice(dataset_train.image_ids, 4)
@@ -267,7 +264,6 @@ def train_head(model, dataset_train, dataset_val, config):
             learning_rate=config.LEARNING_RATE,
             epochs=5,
             layers='heads')
-
 
 """ DETECTION TEST YOUR MODEL """
 
@@ -353,7 +349,3 @@ def test_random_image(test_model, dataset_val, inference_config):
     print("Annotation")
     visualize.display_instances(original_image, gt_bbox, gt_mask, gt_class_id,
                                 dataset_val.class_names, figsize=(8, 8))
-
-
-
-    
