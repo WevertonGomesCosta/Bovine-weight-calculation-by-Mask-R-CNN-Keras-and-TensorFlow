@@ -15,7 +15,8 @@ import zipfile
 
 # Root directory of the project
 ROOT_DIR = os.path.abspath("/content/Bovine-weight-calculation-by-Mask-R-CNN-Keras-and-TensorFlow")
-print("VERS 0.4 - updated 04/08/2022")
+print("VERS 0.5 - updated 02/02/2023")
+
 # Import Mask RCNN
 sys.path.append(ROOT_DIR)  # To find local version of the library
 from mrcnn.config import Config
@@ -38,9 +39,6 @@ COCO_MODEL_PATH = os.path.join(ROOT_DIR, "mask_rcnn_coco.h5")
 if not os.path.exists(COCO_MODEL_PATH):
     utils.download_trained_weights(COCO_MODEL_PATH)
 
-
-
-
 class CustomConfig(Config):
     def __init__(self, num_classes):
 
@@ -59,7 +57,7 @@ class CustomConfig(Config):
     IMAGES_PER_GPU = 4
 
     # Number of classes
-    NUM_CLASSES = 1 + 1
+    NUM_CLASSES = 1 + num_classes # Backgroun + num_classes
 
     # Use small images for faster training. Set the limits of the small side
     # the large side, and that determines the image shape.
