@@ -550,4 +550,3 @@ class InferenceConfig(Config):
     # ETF_C = 1 + 1  # background + 3 shapes
     # IMAGE_MIN_DIM = 832
     # IMAGE_MAX_DIM = 832
-
