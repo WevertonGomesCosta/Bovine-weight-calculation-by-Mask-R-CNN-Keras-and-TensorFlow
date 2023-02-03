@@ -14,7 +14,7 @@ import shutil
 import zipfile
 
 # Root directory of the project
-ROOT_DIR = os.path.abspath("C:/Users/USUARIO/Documents/GitHub/Bovine-weight-calculation-by-Mask-R-CNN-Keras-and-TensorFlow")
+ROOT_DIR = os.path.abspath("/content/Bovine-weight-calculation-by-Mask-R-CNN-Keras-and-TensorFlow/mrcnn")
 print("VERS 0.5 - updated 02/02/2023")
 
 # Import Mask RCNN
