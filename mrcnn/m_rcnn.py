@@ -14,7 +14,7 @@ import shutil
 import zipfile
 
 # Root directory of the project
-ROOT_DIR = os.path.abspath("/content/Bovine-weight-calculation-by-Mask-R-CNN-Keras-and-TensorFlow")
+ROOT_DIR = os.path.abspath("C:/Users/USUARIO/Documents/GitHub/Bovine-weight-calculation-by-Mask-R-CNN-Keras-and-TensorFlow")
 print("VERS 0.5 - updated 02/02/2023")
 
 # Import Mask RCNN
@@ -40,10 +40,6 @@ if not os.path.exists(COCO_MODEL_PATH):
     utils.download_trained_weights(COCO_MODEL_PATH)
 
 class CustomConfig(Config):
-    def __init__(self, num_classes):
-
-        classes_number = num_classes
-        super().__init__()
     """Configuration for training on the toy shapes dataset.
     Derives from the base Config class and overrides values specific
     to the toy shapes dataset.
@@ -57,7 +53,7 @@ class CustomConfig(Config):
     IMAGES_PER_GPU = 4
 
     # Number of classes
-    NUM_CLASSES = 1 + num_classes # Backgroun + num_classes
+    NUM_CLASSES = 1 # Backgroun + num_classes
 
     # Use small images for faster training. Set the limits of the small side
     # the large side, and that determines the image shape.
