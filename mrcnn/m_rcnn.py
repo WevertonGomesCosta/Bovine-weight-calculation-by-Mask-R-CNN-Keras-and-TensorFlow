@@ -287,8 +287,8 @@ def extract_images(my_zip, output_dir):
         print("Extracted: {} images".format(count))
 
 
-def load_test_model(num_classes):
-    inference_config = InferenceConfig(num_classes)
+def load_test_model():
+    inference_config = InferenceConfig()
 
     # Recreate the model in inference mode
     model = modellib.MaskRCNN(mode="inference",
@@ -305,8 +305,8 @@ def load_test_model(num_classes):
     model.load_weights(model_path, by_name=True)
     return model, inference_config
 
-def load_inference_model(num_classes, model_path):
-    inference_config = InferenceConfig(num_classes)
+def load_inference_model(model_path):
+    inference_config = InferenceConfig()
 
     # Recreate the model in inference mode
     model = modellib.MaskRCNN(mode="inference",
