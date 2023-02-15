@@ -260,6 +260,13 @@ def train_head(model, dataset_train, dataset_val, config):
             learning_rate=config.LEARNING_RATE,
             epochs=5,
             layers='heads')
+            
+def train_all(model, dataset_train, dataset_val, config):
+    model.train(dataset_train, dataset_val,
+            learning_rate=config.LEARNING_RATE,
+            epochs=5,
+            layers='all')
+            
 
 """ DETECTION TEST YOUR MODEL """
 
