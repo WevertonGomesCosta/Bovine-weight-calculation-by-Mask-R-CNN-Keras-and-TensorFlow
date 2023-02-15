@@ -68,9 +68,6 @@ class Config(object):
     # Size of the top-down layers used to build the feature pyramid
     TOP_DOWN_PYRAMID_SIZE = 256
 
-    # Number of classification classes (including background)
-    NUM_CLASSES = 1  # Override in sub-classes
-
     # Length of square anchor side in pixels
     RPN_ANCHOR_SCALES = (32, 64, 128, 256, 512)
 
@@ -101,6 +98,9 @@ class Config(object):
     # memory load. Recommended when using high-resolution images.
     USE_MINI_MASK = True
     MINI_MASK_SHAPE = (56, 56)  # (height, width) of the mini-mask
+
+    # ETF size
+    ETF_C = 2
 
     # Input image resizing
     # Generally, use the "square" resizing mode for training and predicting
@@ -225,7 +225,7 @@ class Config(object):
 
         # Image meta data length
         # See compose_image_meta() for details
-        self.IMAGE_META_SIZE = 1 + 3 + 3 + 4 + 1 + self.NUM_CLASSES
+        self.IMAGE_META_SIZE = 1 + 3 + 3 + 4 + 1 + self.ETF_C
 
     def display(self):
         """Display Configuration values."""
