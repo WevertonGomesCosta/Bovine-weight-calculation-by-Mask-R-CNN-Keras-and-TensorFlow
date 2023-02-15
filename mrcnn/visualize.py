@@ -538,7 +538,7 @@ def draw_mask(img, pts, color, alpha=0.5):
 class InferenceConfig(Config):
     def __init__(self, num_classes, image_size):
 
-        self.ETF_C = num_classes + 1
+        self.NUM_CLASSES = num_classes + 1
         self.IMAGE_MAX_DIM = image_size
         self.IMAGE_MIN_DIM = image_size
         super().__init__()
@@ -547,6 +547,6 @@ class InferenceConfig(Config):
     GPU_COUNT = 1
     IMAGES_PER_GPU = 1
     NAME = 'coco'
-    # ETF_C = 1 + 1  # background + 3 shapes
+    # NUM_CLASSES = 1 + 1  # background + 3 shapes
     # IMAGE_MIN_DIM = 832
     # IMAGE_MAX_DIM = 832
