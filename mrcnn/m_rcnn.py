@@ -40,9 +40,8 @@ if not os.path.exists(COCO_MODEL_PATH):
 
 class CustomConfig(Config):
     def __init__(self, num_classes):
-
-        # Number of classes
-        self.NUM_CLASSES = 1 + num_classes
+        Config.NUM_CLASSES = 1 + num_classes
+        super().__init__()
 
     """Configuration for training on the toy shapes dataset.
     Derives from the base Config class and overrides values specific
@@ -69,10 +68,10 @@ class CustomConfig(Config):
     # TRAIN_ROIS_PER_IMAGE = 32
 
     # Use a small epoch since the data is simple
-    STEPS_PER_EPOCH = 500
+    STEPS_PER_EPOCH = 100
 
     # use small validation steps since the epoch is small
-    VALIDATION_STEPS = 5
+    VALIDATION_STEPS = 10
 
     # Minimum probability value to accept a detected instance
     # ROIs below this threshold are skipped
