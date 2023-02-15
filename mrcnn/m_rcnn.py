@@ -39,6 +39,10 @@ if not os.path.exists(COCO_MODEL_PATH):
     utils.download_trained_weights(COCO_MODEL_PATH)
 
 class CustomConfig(Config):
+    def __init__(self, num_classes):
+
+        classes_number = num_classes
+        super().__init__()
     """Configuration for training on the toy shapes dataset.
     Derives from the base Config class and overrides values specific
     to the toy shapes dataset.
