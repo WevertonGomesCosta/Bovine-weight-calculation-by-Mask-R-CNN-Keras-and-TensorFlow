@@ -29,7 +29,6 @@ from PIL import Image, ImageDraw
 import warnings
 warnings.filterwarnings('ignore')
 
-
 # Directory to save logs and trained model
 MODEL_DIR = os.path.join(ROOT_DIR, "logs")
 
