@@ -44,7 +44,6 @@ class CustomConfig(Config):
         # Number of classes
         NUM_CLASSES = 1 + num_classes
 
-        super().__init__()
     """Configuration for training on the toy shapes dataset.
     Derives from the base Config class and overrides values specific
     to the toy shapes dataset.
@@ -74,8 +73,6 @@ class CustomConfig(Config):
 
     # use small validation steps since the epoch is small
     VALIDATION_STEPS = 10
-
-    ETF_C = 2
 
     DETECTION_MIN_CONFIDENCE = 0.9
 
