@@ -56,7 +56,7 @@ class CustomConfig(Config):
     IMAGES_PER_GPU = 4
 
     # Number of classes
-    NUM_CLASSES = 1 # Backgroun + num_classes
+    NUM_CLASSES = 1 + classes_number
 
     # Use small images for faster training. Set the limits of the small side
     # the large side, and that determines the image shape.
@@ -75,8 +75,6 @@ class CustomConfig(Config):
 
     # use small validation steps since the epoch is small
     VALIDATION_STEPS = 5
-
-    ETF_C = 2
 
     DETECTION_MIN_CONFIDENCE = 0.9
 
