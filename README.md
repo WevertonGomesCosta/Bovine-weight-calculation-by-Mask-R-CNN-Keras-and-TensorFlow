@@ -1,6 +1,3 @@
-Aqui está o **README.md** no formato Markdown pronto para ser usado no seu repositório:  
-
-```markdown
 # 🐄 Bovine Weight Calculation by Mask R-CNN (Keras & TensorFlow)
 
 Este projeto implementa uma solução baseada em **Redes Neurais Convolucionais (Mask R-CNN)** para **segmentação de imagens de bovinos** e cálculo de métricas morfométricas (área, perímetro, largura, comprimento), possibilitando a **predição do peso** a partir de imagens.
