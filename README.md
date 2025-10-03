@@ -97,4 +97,3 @@ Sinta-se à vontade para abrir **issues** e enviar **pull requests**.
 
 ## 📜 Licença
 Este projeto é distribuído sob a licença **MIT**. Consulte o arquivo [LICENSE](LICENSE) para mais detalhes.  
-```
